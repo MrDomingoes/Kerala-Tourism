@@ -1,2 +1,2 @@
-# Kerala-Tourism-
+# Kerala-Tourism
 Kerala Tourism Wep page
