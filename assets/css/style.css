@@ -1,32 +1,44 @@
 html,
 body {
-    width: 100%;
-    height: 100%;
     background-color: #E5E5F1;
 }
 
-.container-fluid {
+
+/* .container-fluid {
     height: 100%;
     width: 100%;
     background-color: inherit;
     padding: 0% !important;
     margin: 0% !important;
-}
+} */
 
-div.main {
+
+/* div.main {
     height: 100%;
     width: 100%;
-}
+} */
 
-.header,
+
+/* .header,
 .content,
 .footer {
     width: 100% !important;
     margin: 0% !important;
+} */
+
+.row {
+    width: 100%;
+    height: 100%;
+    margin: 0 !important;
 }
 
-.header {
-    height: 10% !important;
+
+/* header */
+
+header {
+    display: inline-flex;
+    min-height: 10% !important;
+    padding: 1% 0% !important;
     background-color: #2F4550;
     /* position: fixed;
     transition: 1s;
@@ -41,28 +53,28 @@ div.main {
     /* vertical-align: middle; */
     /* width: 100%; */
     /* background-color: rgba(255, 255, 255, .1); */
-    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+    /* box-shadow: 0 5px 10px rgb(0 0 0 / 10%); */
+}
+
+.head-scroll {
+    background-color: #2F4550 !important;
+    transition: 0.1s;
 }
 
 div.logo {
     /* border-radius: 100%; */
-    height: 98%;
+    /* height: 98%; */
 }
 
 div.logo img {
-    width: 5em !important;
-    /* position: relative; */
-    /* border-radius: 50%;
-    width: 65%;
-    padding: 1%;
-    flex-shrink: 0; */
+    width: 4em;
 }
 
 div.nav {
     display: inline-flex;
-    /* list-style: none; */
+    list-style: none;
     padding: 1%;
-    /* margin: 0; */
+    margin: 0;
     align-items: center;
 }
 
@@ -89,13 +101,9 @@ div.user .search-box {
     background-color: #E5E5F1;
 }
 
-.search-box div {
-    display: inline;
-}
-
 .search-box img {
-    width: 20px;
-    display: inline;
+    width: 1em;
+    display: inline !important;
 }
 
 .search-box input {
@@ -109,17 +117,51 @@ div.user .search-box {
 } */
 
 
-/* div {
-    border: 1px solid black;
-    background-color: #F4F4F9; 
-    width: 100%;
-    height: 100%;
-} */
-
-
 /* main content */
 
-.content {
-    background-color: #E5E5F1;
+
+/* section intro */
+
+section.container-fluid {
+    padding: 0% !important;
+}
+
+.intro div.col {
+    padding: 0%;
+}
+
+#carouselExampleControls button {
+    width: 5em;
+}
+
+
+/* welcome section */
+
+.welcome {
+    padding: 2% 1%;
+    margin-bottom: 2% !;
+}
+
+.top-dest .dest {
+    padding: 0 !important;
+}
+
+.top-dest .dest:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.top-dest .dest img {
+    width: 100%;
     height: 100%;
+    display: block;
+    margin: auto;
+}
+
+
+/* footer */
+
+footer {
+    background-color: #586F7C;
+    padding: 3% 2%;
 }
