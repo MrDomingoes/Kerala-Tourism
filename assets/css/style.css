@@ -1,6 +1,8 @@
 html,
 body {
     background-color: #e4e4f1;
+    height: 100%;
+    width: 100%;
 }
 
 .row {
@@ -306,4 +308,62 @@ footer .fnt-color-light {
     padding: 1% 2%;
     align-items: center;
     background-color: #496979;
+}
+
+
+/* districts */
+
+.dist-pict-cnt .dist-image-cntainr {
+    /* border-radius: 20px; */
+}
+
+.dist-pict-cnt .dist-image-cntainr img {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+    border-radius: 50%;
+}
+
+.dist-image-cntainr .dist-heading {
+    position: absolute;
+    z-index: 999;
+}
+
+
+/* login */
+
+.intro1 {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.intro1 #carouselExampleControls {
+    padding: 0;
+    width: 100%;
+}
+
+.intro1 .carousel-inner {
+    height: inherit;
+}
+
+.loginForm {
+    position: absolute;
+    z-index: 999;
+    top: 40%;
+}
+
+.loginForm .col-4 {
+    background-color: #E4E4F1;
+}
+
+.signup {
+    height: 100%;
+    background-image: url('../images/login/img2.jpg');
+    background-size: cover;
+}
+
+.signup .col-7 {
+    background-color: #E4E4F1;
+    padding: 1% 4%;
 }
