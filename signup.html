@@ -30,12 +30,12 @@
                         <div class="form-group mb-4 form-inline">
                             <div class="form-group form-inline mb-2">
                                 <label class="form-control-label mb-2" for="firstname">First Name</label>
-                                <input class="form-control" type="text" id="firstname" placeholder="enter First name">
+                                <input class="form-control" type="text" id="firstname" placeholder="enter First name" pattern="^([A-Za-z])*" required>
                             </div>
 
                             <div class="form-group form-inline mb-2">
                                 <label class="form-control-label mb-2" for="secondname">Second Name</label>
-                                <input class="form-control" type="text" id="secondname" placeholder="enter second name">
+                                <input class="form-control" type="text" id="secondname" placeholder="enter second name" pattern="^([A-Za-z])*" required>
                             </div>
 
                             <small class="form-text text-muted" id="nameHint"></small>
@@ -43,14 +43,14 @@
 
                         <div class="form-group mb-4">
                             <label class="form-control-label mb-2" for="phonenumber">Phone Number</label>
-                            <input class="form-control" type="tel" id="phonenumber" placeholder="enter user name" pattern="^(^[0-9]{3}[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}[-\s\.]?)">
+                            <input class="form-control" type="tel" id="phonenumber" placeholder="enter user name" pattern="^(^[0-9]{3}[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}[-\s\.]?)" required>
                             <small class="form-text text-muted" id="phonHint">Enter Password with consisting charectors
                                 and symbols</small>
                         </div>
 
                         <div class="form-group mb-4">
                             <label class="form-control-label mb-2" for="email">Email</label>
-                            <input class="form-control" type="email" id="email" placeholder="enter email id">
+                            <input class="form-control" type="email" id="email" placeholder="enter email id" pattern="^([A-Za-z0-9\.-]+)@([A-Za-z]+).([com|edu|net]+).([a-z]{2,3}?)" required>
                             <small class="form-text text-muted" id="emailHint">Enter Password with consisting charectors
                                 and symbols</small>
                         </div>
@@ -69,6 +69,8 @@
                                 charectors
                                 and symbols</small>
                         </div>
+
+                        <small class="form-text text-muted" id="hint"></small>
 
                         <input class="btn btn-primary" type="submit" value="SignUp">
 
@@ -110,7 +112,10 @@
 
                     return false;
                 }
-            } else return false;
+            } else {
+                return false;
+
+            }
 
 
         }
