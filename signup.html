@@ -44,27 +44,25 @@
                         <div class="form-group mb-4">
                             <label class="form-control-label mb-2" for="phonenumber">Phone Number</label>
                             <input class="form-control" type="tel" id="phonenumber" placeholder="enter user name" pattern="^(^[0-9]{3}[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}[-\s\.]?)" required>
-                            <small class="form-text text-muted" id="phonHint">Enter Password with consisting charectors
-                                and symbols</small>
+                            <small class="form-text text-muted" id="phonHint"></small>
                         </div>
 
                         <div class="form-group mb-4">
                             <label class="form-control-label mb-2" for="email">Email</label>
-                            <input class="form-control" type="email" id="email" placeholder="enter email id" pattern="^([A-Za-z0-9\.-]+)@([A-Za-z]+).([com|edu|net]+).([a-z]{2,3}?)" required>
-                            <small class="form-text text-muted" id="emailHint">Enter Password with consisting charectors
-                                and symbols</small>
+                            <input class="form-control" type="email" id="email" placeholder="enter email id" pattern="^([A-Za-z0-9\.-]+)@([A-Za-z]+).([com|edu|net]+).([a-z]{2,3})?" required>
+                            <small class="form-text text-muted" id="emailHint"></small>
                         </div>
 
                         <div class="form-group mb-4">
                             <label class="form-control-label mb-2" for="password">Enter Password</label>
-                            <input class="form-control" type="password" id="password" placeholder="enter password">
+                            <input class="form-control" type="password" id="password" placeholder="enter password" required>
                             <small class="form-text text-muted" id="paswdHint">Enter Password with consisting charectors
                                 and symbols</small>
                         </div>
 
                         <div class="form-group mb-4">
                             <label class="form-control-label mb-2" for="username">*Re-enter password</label>
-                            <input class="form-control" type="password" id="repassword" placeholder="enter same password">
+                            <input class="form-control" type="password" id="repassword" placeholder="enter same password" required>
                             <small class="form-text text-muted" id="paswdHint2">Enter Password with consisting
                                 charectors
                                 and symbols</small>
@@ -93,9 +91,12 @@
             var repassword = document.getElementById('repassword');
 
             if (firstname.value != "" || secondname.value != "") {
+                console.log("1");
                 var regex = /^([A-Za-z])*/;
-                if (regex.test(firstname.value)) return true;
-                else {
+                if (regex.test(firstname.value)) {
+                    console.log("2");
+                    return true;
+                } else {
                     var nameHint = document.getElementById('nameHint');
                     nameHint.innerText = "Entered name is not permittable";
                     nameHint.style.color = 'red';
