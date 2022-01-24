@@ -1,7 +1,10 @@
+/* input {
+    width: auto !important;
+} */
+
 html,
 body {
     background-color: #e4e4f1;
-    height: 100%;
     width: 100%;
 }
 
@@ -15,9 +18,9 @@ body {
 /* header */
 
 header {
-    display: inline-flex;
+    /* display: inline-flex; */
     min-height: 10% !important;
-    padding: 1% 0% !important;
+    /* padding: 1% 0% !important; */
     background-color: #496979;
     position: fixed;
     top: 0;
@@ -33,58 +36,20 @@ header {
     /* transition: 0.1s; */
 }
 
-div.logo {
-    /* border-radius: 100%; */
-    /* height: 98%; */
+nav form {
+    margin-left: auto;
 }
 
-div.logo img {
-    width: 4em;
+.nav-link {
+    color: white !important;
 }
 
-div.nav {
-    display: inline-flex;
-    list-style: none;
-    padding: 1%;
-    margin: 0;
-    align-items: center;
+.nav-link:hover {
+    color: #003366 !important;
 }
 
-div.nav a {
-    padding: 7px;
-    text-decoration: none;
-    border: 0.5px solid #e5e5f1;
-    margin-left: 1%;
-    color: #e5e5f1;
-}
-
-div.nav a .active {
-    color: #141414 !important;
-    background-color: #e4e4f1 !important;
-}
-
-div.nav a:hover {
-    border: 0.5px solid #e5e5f1;
-    background-color: #586f7c;
-}
-
-div.user {
-    display: flex;
-    align-items: center;
-}
-
-div.user .search-box {
-    display: inline-flex;
-    background-color: #e5e5f1;
-}
-
-.search-box img {
-    width: 1em;
-    display: inline !important;
-}
-
-.search-box input {
-    width: 100%;
+.active {
+    color: black !important;
 }
 
 
@@ -332,38 +297,50 @@ footer .fnt-color-light {
 
 /* login */
 
-.intro1 {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-}
-
-.intro1 #carouselExampleControls {
-    padding: 0;
-    width: 100%;
-}
-
-.intro1 .carousel-inner {
-    height: inherit;
-}
-
 .loginForm {
-    position: absolute;
-    z-index: 999;
-    top: 40%;
-}
-
-.loginForm .col-4 {
-    background-color: #E4E4F1;
-}
-
-.signup {
+    background-image: url('../images/login/img3.jpg');
+    /* Full height */
     height: 100%;
-    background-image: url('../images/login/img2.jpg');
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
 }
 
-.signup .col-7 {
+.note {
+    font-size: xx-large;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.loginForm form {
+    border-radius: 0.4rem;
+    /* box-shadow: #110f10; */
+}
+
+
+/* .loginForm {
+    position: absolute;
+    z-index: 999;
+    top: 40%;
+} */
+
+
+/* .loginForm .col-4 {
+    background-color: #E4E4F1;
+} */
+
+.signup {
+    background-image: url('../images/login/img2.jpg');
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/* .signup .col-7 {
     background-color: #E4E4F1;
     padding: 1% 4%;
-}
+} */

@@ -21,25 +21,29 @@
     <!-- Header  -->
     <header class="container-fluid" id="header">
         <div class="row">
-            <div class="col-1 logo">
-                <!-- <a href="" class="logo-click"></a> -->
-                <img src="./assets/images/logo2.jpg" class="" alt="" />
-            </div>
-            <div class="col nav">
-                <a href="./index.html">Home</a>
-                <a class="active" href="./district.html">District</a>
-                <a href="./login.html">Login</a>
-                <a href="./signup.html">Signup</a>
-            </div>
-            <div class="col-3 user">
-                <div class="search-box">
-                    <div>
-                        <img src="./assets/images/search.png" alt="" />
+            <nav class="navbar navbar-expand-lg navbar-light ">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#"><img src="./assets/images/logo2.jpg" class="" alt="" width="50"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                        <div class="navbar-nav">
+                            <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                            <a class="nav-link" href="./district.html">District</a>
+                            <a class="nav-link" href="./login.html">Login</a>
+                            <a class="nav-link" href="./signup.html">Signup</a>
+                        </div>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success bg-success text-light" type="submit">Search</button>
+                        </form>
                     </div>
-                    <div><input class="search-key" type="text" /></div>
                 </div>
-            </div>
+            </nav>
+
         </div>
+
     </header>
 
     <!-- content -->
