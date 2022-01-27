@@ -21,7 +21,7 @@
     <section class="container-fluid signup w-100 h-100">
         <div class="row justify-content-center">
             <div class="col-6 p-4 align-items-center">
-                <form class="bg-light text-dark p-5 " action="./index.html" onsubmit="return validate()">
+                <form class="signupForm p-5 " action="./index.html" onsubmit="return validate()">
                     <fieldset class="form-group">
                         <h2 class="text-danger">Sign Up</h2>
                         <legend>Fill the Form</legend>
@@ -55,14 +55,14 @@
 
                         <div class="form-group mb-4">
                             <label class="form-control-label mb-2" for="password">Enter Password</label>
-                            <input class="form-control" type="password" id="password" placeholder="enter password" required>
+                            <input class="form-control" type="password" id="password" placeholder="enter password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required>
                             <small class="form-text text-muted" id="paswdHint">Enter Password with consisting charectors
                                 and symbols</small>
                         </div>
 
                         <div class="form-group mb-4">
                             <label class="form-control-label mb-2" for="username">*Re-enter password</label>
-                            <input class="form-control" type="password" id="repassword" placeholder="enter same password" required>
+                            <input class="form-control" type="password" id="repassword" placeholder="enter same password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$" required>
                             <small class="form-text text-muted" id="paswdHint2">Enter Password with consisting
                                 charectors
                                 and symbols</small>
