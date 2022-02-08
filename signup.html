@@ -14,14 +14,75 @@
 
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.2.0/zxcvbn.js"></script>
     <title>Tour India</title>
 </head>
 
 <body>
+
+    <style>
+        .form-text {
+            color: rgb(202, 20, 20) !important;
+            font-size: larger;
+        }
+        
+        meter {
+            /* Reset the default appearance */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            margin: 0 auto 1em;
+            width: 100%;
+            height: 0.5em;
+            /* Applicable only to Firefox */
+            background: none;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        meter::-webkit-meter-bar {
+            background: none;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        /* Webkit based browsers */
+        
+        meter[value="1"]::-webkit-meter-optimum-value {
+            background: red;
+        }
+        
+        meter[value="2"]::-webkit-meter-optimum-value {
+            background: yellow;
+        }
+        
+        meter[value="3"]::-webkit-meter-optimum-value {
+            background: orange;
+        }
+        
+        meter[value="4"]::-webkit-meter-optimum-value {
+            background: green;
+        }
+        /* Gecko based browsers */
+        
+        meter[value="1"]::-moz-meter-bar {
+            background: red;
+        }
+        
+        meter[value="2"]::-moz-meter-bar {
+            background: yellow;
+        }
+        
+        meter[value="3"]::-moz-meter-bar {
+            background: orange;
+        }
+        
+        meter[value="4"]::-moz-meter-bar {
+            background: green;
+        }
+    </style>
+
     <section class="container-fluid signup w-100 h-100">
         <div class="row justify-content-center">
             <div class="col-6 p-4 align-items-center">
-                <form class="signupForm p-5 " action="./index.html" onsubmit="return validate()">
+                <form class="signupForm p-5 " action="./index.html" onsubmit="event.preventDefault(); return validate()">
                     <fieldset class="form-group">
                         <h2 class="text-danger">Sign Up</h2>
                         <legend>Fill the Form</legend>
@@ -30,12 +91,12 @@
                         <div class="form-group mb-4 form-inline">
                             <div class="form-group form-inline mb-2">
                                 <label class="form-control-label mb-2" for="firstname">First Name</label>
-                                <input class="form-control" type="text" id="firstname" placeholder="enter First name" pattern="^([A-Za-z])*" required>
+                                <input class="form-control" type="text" id="firstname" placeholder="enter First name" required>
                             </div>
 
                             <div class="form-group form-inline mb-2">
                                 <label class="form-control-label mb-2" for="secondname">Second Name</label>
-                                <input class="form-control" type="text" id="secondname" placeholder="enter second name" pattern="^([A-Za-z])*" required>
+                                <input class="form-control" type="text" id="secondname" placeholder="enter second name" required>
                             </div>
 
                             <small class="form-text text-muted" id="nameHint"></small>
@@ -43,32 +104,38 @@
 
                         <div class="form-group mb-4">
                             <label class="form-control-label mb-2" for="phonenumber">Phone Number</label>
-                            <input class="form-control" type="tel" id="phonenumber" placeholder="enter user name" pattern="^(^[0-9]{3}[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}[-\s\.]?)" required>
+                            <input class="form-control" type="tel" id="phonenumber" placeholder="enter phone number" required>
                             <small class="form-text text-muted" id="phonHint"></small>
                         </div>
 
                         <div class="form-group mb-4">
                             <label class="form-control-label mb-2" for="email">Email</label>
-                            <input class="form-control" type="email" id="email" placeholder="enter email id" pattern="^([A-Za-z0-9\.-]+)@([A-Za-z]+).([com|edu|net]+).([a-z]{2,3})?" required>
+                            <input class="form-control" type="email" id="email" placeholder="enter email id" required>
                             <small class="form-text text-muted" id="emailHint"></small>
                         </div>
 
                         <div class="form-group mb-4">
                             <label class="form-control-label mb-2" for="password">Enter Password</label>
-                            <input class="form-control" type="password" id="password" placeholder="enter password" required>
-                            <small class="form-text text-muted" id="paswdHint">Enter Password with consisting charectors
-                                and symbols</small>
+                            <div>
+                                <input class="form-control" type="password" id="password" placeholder="enter password" required>
+                                <div>
+                                    <meter max="4" id="password-strength-meter"></meter>
+                                    <p id="password-strength-text"></p>
+                                </div>
+                            </div>
+
+                            <small class="form-text text-muted" id="passwordHint"></small>
+
+
                         </div>
 
                         <div class="form-group mb-4">
                             <label class="form-control-label mb-2" for="username">*Re-enter password</label>
                             <input class="form-control" type="password" id="repassword" placeholder="enter same password" required>
-                            <small class="form-text text-muted" id="paswdHint2">Enter Password with consisting
-                                charectors
-                                and symbols</small>
                         </div>
 
-                        <small class="form-text text-muted" id="hint"></small>
+
+                        <small class="form-text text-muted" id="passwordHint1"></small>
 
                         <input class="btn btn-primary" type="submit" value="SignUp">
 
@@ -81,7 +148,34 @@
 
     <!-- Optional JavaScript -->
     <script>
-        function validate() {
+        var strength = {
+            0: "Worst",
+            1: "Bad",
+            2: "Weak",
+            3: "Good",
+            4: "Strong"
+        }
+
+        var password = document.getElementById('password');
+        var meter = document.getElementById('password-strength-meter');
+        var text = document.getElementById('password-strength-text');
+
+        password.addEventListener('input', function() {
+            var val = password.value;
+            var result = zxcvbn(val);
+
+            // Update the password strength meter
+            meter.value = result.score;
+
+            // Update the text indicator
+            if (val !== "") {
+                text.innerHTML = "Strength: " + strength[result.score];
+            } else {
+                text.innerHTML = "";
+            }
+        });
+        async function validate() {
+            let validate = false;
             console.log("started");
             var firstname = document.getElementById('firstname');
             var secondname = document.getElementById('secondname');
@@ -90,33 +184,97 @@
             var password = document.getElementById('password');
             var repassword = document.getElementById('repassword');
 
-            if (firstname.value != "" || secondname.value != "") {
+            //validate firstname
+            var regex = /^([a-zA-Z]+\s)*[a-zA-Z]+$/;
+            if (regex.test(firstname.value)) {
                 console.log("1");
-                var regex = /^([A-Za-z])*/;
-                if (regex.test(firstname.value)) {
-                    console.log("2");
-                    return true;
-                } else {
-                    var nameHint = document.getElementById('nameHint');
-                    nameHint.innerText = "Entered name is not permittable";
-                    nameHint.style.color = 'red';
-                    firstname.style.border = '1px solid red';
-
-                    return false;
-                }
-                if (regex.test(secondname.value)) return true;
-                else {
-                    var nameHint = document.getElementById('nameHint');
-                    nameHint.innerText = "Entered name is not permittable";
-                    nameHint.style.color = 'red';
-                    secondname.style.border = '1px solid red';
-
-                    return false;
-                }
+                validate = true;
             } else {
+                var nameHint = document.getElementById('nameHint');
+                nameHint.innerText = "Entered name is not permittable";
+                firstname.style.border = '2px solid red';
+                firstname.focus();
                 return false;
-
             }
+
+
+            //validate secondname
+            var regex = /^([a-zA-Z]+\s)*[a-zA-Z]+$/;
+            if (regex.test(secondname.value)) {
+                console.log("2");
+                validate = true;
+            } else {
+                var nameHint = document.getElementById('nameHint');
+                nameHint.innerText = "Entered second name is not permittable";
+                secondname.style.border = '2px solid red';
+                secondname.focus();
+                return false;
+            }
+
+
+            // validate phonenumber
+
+            var regex = /^[0-9]{3}[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/;
+            if (regex.test(phonenumber.value)) {
+                console.log("3");
+                validate = true;
+            } else {
+                var phonHint = document.getElementById('phonHint');
+                phonHint.innerText = "Entered phone is not valid";
+                phonenumber.style.border = '2px solid red';
+                phonenumber.focus();
+                return false;
+            }
+
+
+            // validate email
+
+            var regex = /^[A-Za-z0-9]+@[a-z]+.[a-z]{2,3}/;
+            if (regex.test(email.value)) {
+                console.log("3");
+                validate = true;
+            } else {
+                var emailHint = document.getElementById('emailHint');
+                emailHint.innerText = "Entered email is not valid";
+                email.style.border = '2px solid red';
+                email.focus();
+                return false;
+            }
+
+
+            return validate;
+
+            // validate password
+
+            var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.)[A-Za-z\d]{8,}$/;
+            if (regex.test(password.value)) {
+                console.log("3");
+                validate = true;
+            } else {
+                var passwordHint = document.getElementById('passwordHint');
+                passwordHint.innerText = "Entered password is not valid";
+                password.style.border = '2px solid red';
+                password.focus();
+                return false;
+            }
+
+
+            if (password.value == repassword) {
+                console.log("3");
+                validate = true;
+            } else {
+                var passwordHint1 = document.getElementById('passwordHint1');
+                passwordHint1.innerText = "Entered password is not valid";
+                repassword.style.border = '2px solid red';
+                repassword.focus();
+                return false;
+            }
+
+
+
+            return validate;
+
+
 
 
         }
